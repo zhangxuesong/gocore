@@ -13,13 +13,64 @@ type AnimalCategory struct {
 	species string // 种。
 }
 
+type Animal struct {
+	scientificName string // 学名。
+	AnimalCategory        // 动物基本分类。
+}
+
+type Cat struct {
+	name string
+	Animal
+}
+
+func (cat Cat) String() string {
+	return fmt.Sprintf("%s (category: %s, name: %q)",
+		cat.scientificName, cat.Animal.AnimalCategory, cat.name)
+}
+
 func (ac AnimalCategory) String() string {
 	return fmt.Sprintf("%s%s%s%s%s%s%s",
 		ac.kingdom, ac.phylum, ac.class, ac.order,
 		ac.family, ac.genus, ac.species)
 }
 
+func (a Animal) Category() string {
+	return a.AnimalCategory.String()
+}
+
+//func (a Animal) String() string {
+//	return fmt.Sprintf("%s (category: %s)",
+//		a.scientificName, a.AnimalCategory)
+//}
+
+type S1 struct {
+	S1 string
+}
+
+func (s1 S1) String() string {
+	return fmt.Sprint("this is : s1.\n")
+}
+
+type S2 struct {
+	S2 string
+}
+
+func (s2 S2) String() string {
+	return fmt.Sprint("this is : s2.\n")
+}
+
+type Base struct {
+	Name string
+	S1
+	S2
+}
+
+//func (bs Base) String() string {
+//	return fmt.Sprint("this is : base.\n")
+//}
+
 func main() {
-	category := AnimalCategory{species: "cat"}
-	fmt.Printf("the animal category is: %v.\n", category.String())
+	b := Base{}
+	fmt.Printf("base %s.\n", b)
+
 }
