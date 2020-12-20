@@ -3,10 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"net"
 	"os"
 	"os/exec"
-	"syscall"
 )
 
 func echo(request string) (response string, err error) {
@@ -26,7 +24,7 @@ func underlyingError(err error) error {
 		return err.Err
 	case *os.SyscallError:
 		return err.Err
-	case *exec.Error
+	case *exec.Error:
 		return err.Err
 	}
 	return err
@@ -40,7 +38,6 @@ func main() {
 			fmt.Printf("error: %s\n", err.Error())
 			continue
 		}
-		fmt.Errorf()
 		fmt.Println(resp)
 	}
 
