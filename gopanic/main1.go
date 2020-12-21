@@ -12,6 +12,7 @@ func main() {
 
 func caller1() {
 	fmt.Println("Enter function caller1.")
+	panic(fmt.Println)
 	caller2()
 	fmt.Println("Exit function caller1.")
 }
